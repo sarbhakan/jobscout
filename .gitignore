@@ -1,0 +1,60 @@
+# Dépendances et fichiers régénérés par Next.js / TypeScript
+node_modules/
+.next/
+.next-dev/
+out/
+build/
+dist/
+next-env.d.ts
+*.tsbuildinfo
+
+# Configuration privée : seul le modèle sans secret est partagé
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.cer
+*.crt
+
+# Données de l'utilisateur et bases SQLite, quel que soit leur dossier
+/data/
+/demo-profiles/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+# Modèles OCR téléchargés à la première lecture d'un CV image
+*.traineddata
+
+# Installeur Windows : sources conservées, sorties exclues
+installer/dist/
+installer/output/
+installer/runtime/
+installer/leak-needles.local.txt
+installer/leak-needles.operator.txt
+
+# Journaux, résultats de tests et caches locaux
+*.log
+logs-*.txt
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+.cache/
+/public/jobscout-widget.js
+
+# Réglages propres au poste
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+.codex/
+
+# Lanceur macOS généré sur place (npm run shortcut:mac)
+JobScout.command

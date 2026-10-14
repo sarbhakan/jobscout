@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Même dessin que installer/make-icon.mjs (jobscout.ico) : carré arrondi
+       en dégradé #111827 → #2563EB, loupe blanche. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.92" y="1.92" width="60.16" height="60.16" rx="14.08" fill="url(#bg)"/>
+  <g fill="none" stroke="#fff">
+    <circle cx="27.84" cy="26.88" r="12.48" stroke-width="5.12"/>
+    <path d="M38.67 37.71 L49.92 49.92" stroke-width="7.04" stroke-linecap="round"/>
+  </g>
+</svg>

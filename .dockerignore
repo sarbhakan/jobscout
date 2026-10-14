@@ -1,0 +1,15 @@
+.git
+node_modules
+.next
+.next-dev
+data
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+*.sqlite*
+*.log
+installer/output
+installer/runtime
+coverage

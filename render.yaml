@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jobscout
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: JOBSCOUT_PUBLIC_URL
+        sync: false

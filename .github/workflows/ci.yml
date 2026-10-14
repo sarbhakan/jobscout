@@ -1,0 +1,32 @@
+name: JobScout Web and MCP
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build:widget
+      - run: npm run typecheck
+      - run: npm test -- --maxWorkers=3
+      - run: npm run build
+      - name: Production HTTP and MCP smoke
+        run: |
+          set -euo pipefail
+          npm start > /tmp/jobscout.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:3000/api/health > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run smoke

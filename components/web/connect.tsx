@@ -1,0 +1,17 @@
+"use client";
+import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowUpRight, Copy, Check, Sparkles } from "lucide-react";
+import "./workspace.css";
+export function Connect() {
+  const [endpoint, setEndpoint] = useState(""); const [copied, setCopied] = useState(false);
+  useEffect(() => { setEndpoint(`${window.location.origin}/mcp`); }, []);
+  return <div className="js-site"><main style={{ maxWidth: 780, margin: "0 auto", padding: "48px 24px", width: "100%" }}>
+    <a className="js-text-link" style={{ justifyContent: "flex-start", marginBottom: 38 }} href="/"><ArrowLeft size={16} /> Retour à JobScout</a>
+    <span className="js-mini-spark"><Sparkles size={22} /></span><div className="js-page-heading"><div><span className="js-eyebrow">VOTRE COMPTE, VOTRE CONVERSATION</span><h1>ChatGPT trouve les mots.<br />JobScout prépare la suite.</h1><p>Connectez JobScout à ChatGPT pour chercher des offres et télécharger vos candidatures dans la conversation.</p></div></div>
+    <section className="js-editor-card"><h2 style={{ fontSize: 18 }}>Ajouter JobScout à votre compte ChatGPT</h2><p>La connexion personnalisée nécessite l'accès au mode développeur et aux applications MCP dans votre compte ChatGPT. Leur disponibilité dépend de votre offre et des paramètres de votre espace de travail.</p>
+      <ol style={{ listStyle: "decimal", paddingLeft: 22, lineHeight: 2.1, margin: "20px 0", fontSize: 13 }}><li>Ouvrez les paramètres ChatGPT, rubrique Applications ou Connecteurs.</li><li>Activez le mode développeur si votre compte le permet.</li><li>Ajoutez une application nommée <strong>JobScout</strong> avec l'adresse MCP ci-dessous et le mode sans authentification.</li><li>Dans une conversation, sélectionnez JobScout et demandez : « Ouvre JobScout et aide-moi à trouver un emploi. »</li><li>Joignez votre CV, choisissez une offre, puis validez les contenus avant de demander les PDF et DOCX.</li></ol>
+      <label className="js-field">Adresse du serveur MCP<input readOnly value={endpoint} aria-label="Adresse du serveur MCP" /></label><div className="js-detail-actions"><button className="js-primary" onClick={async () => { try { await navigator.clipboard.writeText(endpoint); setCopied(true); } catch { setCopied(false); } }}>{copied ? <Check size={16} /> : <Copy size={16} />}{copied ? "Adresse copiée" : "Copier l'adresse"}</button><a className="js-secondary" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Ouvrir ChatGPT <ArrowUpRight size={16} /></a></div>
+      <p>L'adresse doit être publique en HTTPS. Une adresse locale ne pourra pas être jointe par ChatGPT. Ce site ne connecte pas automatiquement votre compte en cliquant sur le bouton.</p>
+    </section><section className="js-editor-card" style={{ marginTop: 20 }}><h2 style={{ fontSize: 18 }}>Comment vos données sont séparées</h2><p>Chaque personne utilise sa propre conversation ChatGPT. JobScout fonctionne sans comptes ni sauvegarde de profils : il traite les arguments de chaque appel et renvoie les résultats à la conversation qui l'a appelé. Aucun abonnement du propriétaire n'est partagé. ChatGPT applique les limites de chaque compte.</p><p>Une publication dans l'annuaire des applications ChatGPT nécessite une démarche distincte et l'acceptation par la plateforme. L'ajout en mode développeur sert à tester l'intégration.</p><a className="js-text-link" href="/privacy">Lire les informations de confidentialité <ArrowUpRight size={14} /></a></section>
+  </main></div>;
+}
